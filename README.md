@@ -1,5 +1,7 @@
 # ply-simple
 
+PLY-Simple converter to PLY
+
 ## Authors
 
 - [André Vaz](https://xfn14.com)
