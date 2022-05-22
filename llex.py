@@ -5,7 +5,7 @@ import ply.lex as lex
 # [a-zA-Z|_]+\([^\)]*\)(\.[^\)]*\))? - detetar funçoes
 
 literals = ['%', '=', '!']
-tokens = ['id', 'DEF', 'COMMENT', 'aspas', 'reto', 'chav', 'curvo']
+tokens = ['id', 'COMMENT', 'aspas', 'reto', 'chav', 'curvo']
 
 def t_curvo(p):
     r'\(.*?\)'
@@ -24,9 +24,9 @@ def t_chav(p):
     r'{.*?}'
     return p
 
-def t_DEF(p):
-    r'(?P<indent>[ \t]*)def[ \t]*(?P<name>\w+)\s*\((?P<params>.*?)\)(?:[ \t]*->[ \t]*(?P<return>\w+))?:(?P<body>(?:\n(?P=indent)(?:[ \t]+[^\n]*)|\n)+)'
-    return p
+# def t_DEF(p):
+#     r'(?P<indent>[ \t]*)def[ \t]*(?P<name>\w+)\s*\((?P<params>.*?)\)(?:[ \t]*->[ \t]*(?P<return>\w+))?:(?P<body>(?:\n(?P=indent)(?:[ \t]+[^\n]*)|\n)+)'
+#     return p
 
 def t_COMMENT(p):
     r'\#.*'

@@ -49,10 +49,14 @@ def p_Expression_COMMENT(p):
     "Expression : COMMENT"
     p[0] = ''
     
-def p_Expression_DEF(p):
-    "Expression : DEF"
-    p[0] = p[1]
-
+def p_Expression_FUNC(p):
+    "Expression : reto aspas"
+    print(p[2][1:-1])
+    p[0] = "def " + p[1].replace('[', "").replace(']', "") + ":\n"
+    lines = p[2][1:-1].replace("; ", ";").split(';')
+    for line in lines:
+        p[0] += '\t' + line + '\n'
+    
 def p_Expression_LEX(p):
     "Expression : '%' '%' id"
     if p[3] == 'LEX':

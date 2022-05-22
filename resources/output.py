@@ -2,21 +2,17 @@ import ply.lex as lex
 literals = ['+', '-', '/', '*', '=', '(', ')']
 ignore = " \t\n"
 tokens = [ 'VAR', 'NUMBER']
-
 def t_VAR(t):
 	r'[a-zA-Z_][a-zA-Z0-9_]*'
 	t.value = t.value
 	return t
-
 def t_NUMBER(t):
 	r'\d+\.\d+'
 	t.value = float(t.value)
 	return t
-
 def t_error(t):
-    print(f"Illegal character '{t.value[0]}', [{t.lexer.lineno}]")
-    t.lexer.skip(1)
-
+	print(f"Illegal character '{t.value[0]}', [{t.lexer.lineno}]")
+	t.lexer.skip(1)
 lexer = lex.lex()
 
 import ply.yacc as yacc
@@ -63,12 +59,10 @@ def p_Expression_9(t):
 	t[0] = getval(t[1]) 
 
 def p_error(t):
-    print(f"Syntax error at '{t.value}', [{t.lexer.lineno}]")
-
+	print(f"Syntax error at '{t.value}', [{t.lexer.lineno}]")
 def getval(n):
-    if n not in ts: print(f"Undefined name '{n}'")
-    return ts.get(n,0)
-
+	if n not in ts: print(f"Undefined name '{n}'")
+	return ts.get(n,0)
 parser = yacc.yacc()
-parsed = parser.parse("5+6")
+parsed = parser.parse("5.0+6.0")
 print(parsed)
